@@ -6,7 +6,7 @@ class GameCalculator
 
     frames.each_with_index do |frame, i|
       if i > 9
-        #bonus frame
+        #bonus frames have no score of their own
         frame.score = 0
       elsif frame.strike?
         score = 10
