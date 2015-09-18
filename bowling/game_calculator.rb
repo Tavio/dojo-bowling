@@ -3,6 +3,7 @@ require_relative 'input_parser'
 class GameCalculator
   def calculate(scorecard)
     frames = InputParser.new.parse(scorecard)
+
     frames.each_with_index do |frame, i|
       if i > 9
         #bonus frame
@@ -24,6 +25,7 @@ class GameCalculator
         frame.score = frame.first_score + frame.second_score
       end
     end
+
     frames.map(&:score).reduce(0, &:+)
   end
 end
