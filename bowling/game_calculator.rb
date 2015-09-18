@@ -5,16 +5,16 @@ class GameCalculator
     frames = InputParser.new.parse(scorecard)
     frames.each_with_index do |frame, i|
       if i > 9
+        #bonus frame
         frame.score = 0
       elsif frame.strike?
-        num_throws = 0
         score = 10
-        j = i + 1
-        while num_throws < 2 do
-          next_frame = frames[j]
+        next_frame = frames[i + 1]
+        if next_frame.strike?
+          next_next_frame = frames[i + 2]
+          score += next_frame.first_score + next_next_frame.first_score
+        else
           score += next_frame.first_score + next_frame.second_score
-          num_throws += next_frame.num_throws
-          j = j + 1
         end
         frame.score = score
       elsif frame.spare?
