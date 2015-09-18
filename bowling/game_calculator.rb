@@ -24,6 +24,6 @@ class GameCalculator
         frame.score = frame.first_score + frame.second_score
       end
     end
-    frames.map(&:score).inject(0, &:+)
+    frames.map(&:score).reduce(0, &:+)
   end
 end
